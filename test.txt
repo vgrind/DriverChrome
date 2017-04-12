@@ -22,22 +22,17 @@ public class FirstTest {
         driver = new ChromeDriver();
     }
 
-    @Test 
+    @Test // Marking this method as part of the test
     public void testLoginPass() throws InterruptedException, IOException {
 
         driver.get("http://the-internet.herokuapp.com/");
-        Thread.sleep(2000);
-        File scrFilemain=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFilemain, new File("c:\\test\\screenshotbeforemain.png"));
         driver.findElement(By.xpath("/html/body/div[2]/div/ul/li[18]/a")).click();
-        
-        File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("c:\\test\\screenshotbefore.png"));
-
+        // Find the text input element by its id and type "tomsmith"
         driver.findElement(By.id("username")).sendKeys("tomsmith");
+        // Find the text input element by its id and type "SuperSecretPassword!"
         driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+        // Click Login button
         driver.findElement(By.className("radius")).click();
-        Thread.sleep(2000);
         File scrFileAfter=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFileAfter, new File("c:\\test\\screenshotafter.png"));
     }
